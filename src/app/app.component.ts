@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { } from 'googlemaps';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent {
 
   ngOnInit() {
     var mapProp = {
-      center: new google.maps.LatLng(-33.403468, -70.556611),
+      center: new google.maps.LatLng(-33.4041511, -70.5570019),
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };

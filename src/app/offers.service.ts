@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 })
 export class OffersService {
 
-  constructor(private http: HttpClient) { 
+  constructor(private _http: HttpClient) { 
     
   }
 
   getOffers(): Observable<Array<Offer>> {
-    return this.http.get<Array<Offer>>("http://localhost:8080/offer");
+    return this._http.get<Array<Offer>>("http://localhost:8080/offer");
   }
 }

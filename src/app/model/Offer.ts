@@ -1,4 +1,6 @@
+import { Coordinates } from './Coordinates';
+
 export class Offer {
-    private title: string;
-    private coordinates: Coordinates;
+    public title: string;
+    public coordinates: Coordinates;
 }

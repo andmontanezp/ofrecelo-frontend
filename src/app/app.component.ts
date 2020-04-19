@@ -14,7 +14,7 @@ export class AppComponent {
   
   title = 'ofrecelo-frontend';
   
-  constructor(private offersService: OffersService) {
+  constructor(private _offersService: OffersService) {
 
   }
 
@@ -22,12 +22,7 @@ export class AppComponent {
 
   ngOnInit() {
 
-    this.offersService.getOffers().subscribe(
-      offers => {
-        console.log(JSON.stringify(offers))
-        this.offers
-      } 
-    );
+    
 
     var myLatLng = {lat: -33.4041511, lng: -70.5570019};
 
@@ -39,12 +34,40 @@ export class AppComponent {
 
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
 
-
-    var marker = new google.maps.Marker({
-      position: myLatLng,
-      map: this.map,
-      draggable: true,
-      title: 'My title'
-    });
+    this._offersService.getOffers().subscribe(
+      offers => {
+        offers.map(
+          offer => {
+            const marker = new google.maps.Marker({
+              position: {lat: offer.coordinates.latitude, lng: offer.coordinates.longitude},
+              map: this.map,
+              draggable: true,
+              title: offer.title
+            });
+            this.createInfoWindow(marker, offer);
+          }
+        );
+      } 
+    );
   }
+
+  createInfoWindow(marker: google.maps.Marker, offer: Offer) {
+
+    const contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">'+offer.title+'</h1>'+
+            '<div id="bodyContent">'+
+            `${offer.title} ${offer.title} ${offer.title}`
+            '</div>'+
+            '</div>';
+
+    const infoWindow = new google.maps.InfoWindow({
+      content: contentString 
+    });
+
+    marker.addListener('click', () => {
+      infoWindow.open(marker.get('map'), marker);
+    });
+  } 
 }

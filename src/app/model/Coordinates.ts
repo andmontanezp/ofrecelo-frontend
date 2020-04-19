@@ -1,4 +1,4 @@
 export class Coordinates {
-    private latitude: string;
-    private longitude: string;
+    public latitude: number;
+    public longitude: number;
 }

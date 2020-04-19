@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './_components/login/login.component';
 import { MapComponent } from './_components/map/map.component';
 import { RegisterComponent } from './_components/register/register.component';
+import { AlertComponent } from './_components/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MapComponent,
-    RegisterComponent
+    RegisterComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

@@ -5,9 +5,9 @@ import { ReactiveFormsModule }    from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { MapComponent } from './components/map/map.component';
-import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './_components/login/login.component';
+import { MapComponent } from './_components/map/map.component';
+import { RegisterComponent } from './_components/register/register.component';
 
 @NgModule({
   declarations: [

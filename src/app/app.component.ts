@@ -1,8 +1,8 @@
-import { Coordinates } from './model/Coordinates';
-import { Offer } from './model/Offer';
+import { Coordinates } from './model/coordinates';
+import { Offer } from './model/offer';
 import { Component, ViewChild } from '@angular/core';
 import { } from 'googlemaps';
-import { OffersService } from './offers.service';
+import { OffersService } from './_services/offers.service';
 import { Observable, Subject } from 'rxjs';
 
 @Component({

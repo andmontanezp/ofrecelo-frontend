@@ -1,6 +1,8 @@
-<!-- <ul>
-  <li *ngFor="let offer of offers">
-    {{offer.title}} - [{{offer.coordinates.latitude}} , {{offer.coordinates.longitude}}]
-  </li>
-</ul> -->
-<div #map style="width:100%;height:400px"></div>
+<mat-grid-list cols="4" rowHeight="600px">
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+        <offer-card-list></offer-card-list>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="2">
+        <div #map style="width:100%;height:100%"></div>
+    </mat-grid-tile>
+</mat-grid-list>

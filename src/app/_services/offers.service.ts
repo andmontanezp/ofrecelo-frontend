@@ -16,8 +16,6 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class OffersService {
-  
-  latLng = new Subject<google.maps.LatLng>();
   constructor(private _http: HttpClient) { }
 
   getOffers(): Observable<Array<Offer>> {

@@ -7,5 +7,5 @@ export class User {
     firstName: string;
     lastName: string;
     role: Role;
-    token?: string;
+    access_token?: string;
 }

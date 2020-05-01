@@ -9,6 +9,7 @@ import { LoginComponent } from './_components/login/login.component';
 import { MapComponent } from './_components/map/map.component';
 import { RegisterComponent } from './_components/register/register.component';
 import { AlertComponent } from './_components/alert/alert.component';
+import { CreateOfferComponent } from './_guards/_components/create-offer/create-offer.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AlertComponent } from './_components/alert/alert.component';
     LoginComponent,
     MapComponent,
     RegisterComponent,
-    AlertComponent
+    AlertComponent,
+    CreateOfferComponent
   ],
   imports: [
     BrowserModule,

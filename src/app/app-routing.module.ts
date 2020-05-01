@@ -16,7 +16,7 @@ const routes: Routes = [
     path: '', 
     component: BaseLayoutComponent, 
     children: [{
-      path: 'map',
+      path: '',
       component: MapComponent
     }],
     canActivate:[AuthGuard]},

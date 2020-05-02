@@ -2,12 +2,12 @@
   <div class="container">
     <div [hidden]="submitted">
       <h1>Sign in</h1>
-      <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <form #registerForm="ngForm">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name"
                  required
-                 [(ngModel)]="model.name" name="name"
+                 [(ngModel)]="registerForm.name" name="name" required
                  #name="ngModel">
           <div [hidden]="name.valid || name.pristine"
                class="alert alert-danger">
@@ -17,51 +17,61 @@
   
         <div class="form-group">
           <label for="lastName">Last Name</label>
-          <input type="text" class="form-control" id="lastName"
-                 [(ngModel)]="model.lastName" name="lastName">
+          <input type="text" class="form-control" id="lastName" required
+                 [(ngModel)]="registerForm.lastName" name="lastName" #lastName="ngModel">
+        </div>
+
+        <div [hidden]="lastName.valid || lastName.pristine"
+        class="alert alert-danger">
+          LastName is required
         </div>
 
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="email"
-                 [(ngModel)]="model.email" name="email">
+          <input type="email" class="form-control" id="email" required
+                 [(ngModel)]="registerForm.email" name="email" #email="ngModel" ngModel [email]="true">
         </div>
+        <div [hidden]="email.valid || email.pristine"
+               class="alert alert-danger">
+            Name is required
+          </div>
         
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="text" class="form-control" id="password"
-                 [(ngModel)]="model.password" name="password">
+          <input type="password" class="form-control" id="password" required
+                 [(ngModel)]="registerForm.password" name="password" #password="ngModel">
+        </div>
+
+        <div [hidden]="password.valid || password.pristine"
+        class="alert alert-danger">
+            Password is required
         </div>
 
         <div class="form-group">
-          <label for="password2">Confirm password</label>
-          <input type="text" class="form-control" id="password2"
-                 [(ngModel)]="model.password2" name="password2">
+          <label for="confirmpassword">Confirm password</label>
+          <input type="password" class="form-control" id="confirmpassword"
+                 [(ngModel)]="registerForm.confirmpassword" name="confirmpassword" #confirmpassword="ngModel" required> 
+        </div>
+        
+        <div [hidden]="confirmpassword.valid || confirmpassword.pristine"
+        class="alert alert-danger">
+            Password is required
+        </div>
+
+        <div [hidden]="registerForm.confirmpassword == registerForm.password || !confirmpassword.valid"
+        class="alert alert-danger">
+            Password is not match
         </div>
   
-        
-  
-        <button type="submit" class="btn btn-success" [disabled]="!registerForm.form.valid" >Submit</button>
+        <button type="submit" class="btn btn-success" [disabled]="!registerForm.form.valid"  (click)="onSubmit(registerForm)">Submit</button>
         <!-- <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button> -->
   
       </form>
     </div>
     <div [hidden]="!submitted">
-      <h2>You submitted the following:</h2>
-      <div class="row">
-        <div class="col-xs-3">Name</div>
-        <div class="col-xs-9">{{ showUser().name }}</div>
-      </div>
-      <div class="row">
-        <div class="col-xs-3">Alter Ego</div>
-        <div class="col-xs-9">{{ showUser().lastName }}</div>
-      </div>
-      <div class="row">
-        <div class="col-xs-3">Power</div>
-        <div class="col-xs-9">{{ showUser().email }}</div>
-      </div>
+      <h2>Bienvenido {{ showUser().name }}, tus registro fue exitoso</h2>
       <br>
-      <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+      <button class="btn btn-primary" >Home</button>
     </div>
   </div>
 </div>

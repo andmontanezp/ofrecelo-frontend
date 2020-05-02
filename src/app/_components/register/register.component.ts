@@ -15,23 +15,34 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  model = new User();
-
+  
+  user = new User();
   submitted = false;
 
-  onSubmit() { 
+  validatePassword(form:any){
+      if(form.controls['password'].value === form.controls['confirmpassword'].value){
+        form.controls['confirmpassword.valid']=true 
+      }
+  }
+
+  onSubmit(form: any) { 
     this.submitted = true; 
-    this.model;
-    console.log("user : "+this.model.name);
-    this.registerService.register(this.model.name,this.model.lastName, this.model.email, this.model.password);
+    console.log("user : "+this.user.name);
+    this.user.name = form.controls['name'].value;
+    this.user.lastName = form.controls['lastName'].value;
+    this.user.email = form.controls['email'].value;
+    this.user.password = form.controls['password'].value;
+
+    this.registerService.register(this.user).subscribe((data)=>{
+      console.log(data);
+    });
   }
 
   // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.model); }
+  get diagnostic() { return JSON.stringify(this.user); }
 
   showUser(){
-    return this.model;
+    return this.user;
   }
 
 }

@@ -24,7 +24,9 @@ export class RegisterComponent implements OnInit {
     this.submitted = true; 
     this.model;
     console.log("user : "+this.model.name);
-    this.registerService.register(this.model.name,this.model.lastName, this.model.email, this.model.password);
+    this.registerService.register(this.model.name,this.model.lastName, this.model.email, this.model.password).subscribe((data)=>{
+      console.log(data);
+    });
   }
 
   // TODO: Remove this when we're done

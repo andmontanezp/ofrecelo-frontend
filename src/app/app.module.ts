@@ -11,6 +11,7 @@ import { RegisterComponent } from './_components/register/register.component';
 import { AlertComponent } from './_components/alert/alert.component';
 import { CreateOfferComponent } from './_components/create-offer/create-offer.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,14 +20,15 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
     MapComponent,
     RegisterComponent,
     AlertComponent,
-    CreateOfferComponent
+    CreateOfferComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Offer } from 'src/app/model/offer';
 
 @Component({
   selector: 'offer-card-list',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OfferCardListComponent implements OnInit {
 
+  offers: Array<Offer>;
   constructor() { }
 
   ngOnInit() {
+    this.offers = JSON.parse(sessionStorage.getItem('offers'));
+    console.log(this.offers);
   }
 
 }

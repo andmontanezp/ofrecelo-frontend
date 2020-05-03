@@ -39,7 +39,8 @@
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" class="form-control" id="password" required
-                 [(ngModel)]="registerForm.password" name="password" #password="ngModel">
+                 [(ngModel)]="registerForm.password" name="password" #password="ngModel"  value="Encrypt" 
+                 (ngModelChange)="validatePassword(registerForm)">
         </div>
 
         <div [hidden]="password.valid || password.pristine"
@@ -50,7 +51,8 @@
         <div class="form-group">
           <label for="confirmpassword">Confirm password</label>
           <input type="password" class="form-control" id="confirmpassword"
-                 [(ngModel)]="registerForm.confirmpassword" name="confirmpassword" #confirmpassword="ngModel" required> 
+                 [(ngModel)]="registerForm.confirmpassword" name="confirmpassword" #confirmpassword="ngModel" required 
+                 (ngModelChange)="validatePassword(registerForm)" value="Encrypt"> 
         </div>
         
         <div [hidden]="confirmpassword.valid || confirmpassword.pristine"
@@ -63,12 +65,17 @@
             Password is not match
         </div>
   
-        <button type="submit" class="btn btn-success" [disabled]="!registerForm.form.valid"  (click)="onSubmit(registerForm)">Submit</button>
+        <button type="submit" class="btn btn-success" [disabled]="!registerForm.form.valid || !confirmpasswordValid || loading"  (click)="onSubmit(registerForm)">Submit</button>
         <!-- <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button> -->
   
       </form>
     </div>
-    <div [hidden]="!submitted">
+    <div [hidden]="!showError"
+        class="alert alert-danger">
+        {{errorMassage}}
+    </div>
+
+    <div [hidden]="showError || !submitted">
       <h2>Bienvenido {{ showUser().name }}, tus registro fue exitoso</h2>
       <br>
       <button class="btn btn-primary" >Home</button>

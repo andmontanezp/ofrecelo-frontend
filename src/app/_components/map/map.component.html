@@ -1,4 +1,4 @@
-<mat-grid-list cols="4" rowHeight="600px">
+<mat-grid-list cols="4" rowHeight="600px" class="d-none d-md-block d-lg-none d-lg-none d-lg-block d-xl-none d-xl-block">
     <mat-grid-tile [colspan]="2" [rowspan]="2" id="offer-card-list">
         <offer-card-list></offer-card-list>
     </mat-grid-tile>
@@ -6,3 +6,12 @@
         <div #map style="width:100%;height:100%"></div>
     </mat-grid-tile>
 </mat-grid-list>
+
+<div class="d-block d-sm-none d-sm-block d-md-none">
+    <div class="map-mobile">
+        <map-mobile></map-mobile>
+    </div>
+    <div>
+        <offer-list-mobile></offer-list-mobile>
+    </div>
+</div>

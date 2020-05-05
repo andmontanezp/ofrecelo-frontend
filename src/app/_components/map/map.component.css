@@ -1,10 +1,17 @@
+
 #offer-card-list {
     overflow-y: scroll;
-  }
-  
-  #map-site {
+    width: 70%
+}
+
+#map-site {
     position: fixed;
     top: 0;
-    height: 60px;
+    height: 400px;
     width: 100%;
-  }
+}
+
+.map-mobile{
+    width:100%;
+    height: 400px;
+}

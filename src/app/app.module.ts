@@ -18,6 +18,8 @@ import { OfferCardListComponent } from './_components/offer-list/offer-card-list
 import { OfferCardComponent } from './_components/offer/offer.card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BaseLayoutComponent } from './_components/base-layout/base-layout.component';
+import { OfferListMobileComponent } from './_components/offer-list-mobile/offer-list-mobile.component';
+import { MapMobileComponent } from './_components/map-mobile/map-mobile.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { BaseLayoutComponent } from './_components/base-layout/base-layout.compo
     CreateOfferComponent,
     OfferCardListComponent,
     OfferCardComponent,
-    BaseLayoutComponent
+    BaseLayoutComponent,
+    OfferListMobileComponent,
+    MapMobileComponent
   ],
   imports: [
     BrowserModule,

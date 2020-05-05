@@ -1,0 +1,7 @@
+.card-block {
+    min-height: 300px;
+}
+
+.container-fluid {
+    overflow-x: scroll !important;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms'
+import {ValidatorFn} from '@angular/forms/src/directives/validators';
 
 import { OffersService } from '../../_services/offers.service';
 import { Offer } from 'src/app/model/offer';
@@ -22,6 +23,9 @@ export class CreateOfferComponent implements OnInit {
   coordinates: Coordinates = {latitude: 0, longitude: 0};
   offer: Offer = {title: '', coordinates: this.coordinates};
   address: Address = {countryName: '', regionName: '', cityName: '', streetName: '', streetNumber: 0}
+  fileUpload: File;
+  fileName: string = 'Seleccione un archivo';
+  showErrorUploadFile: boolean = false;
 
   constructor(
     private offerService: OffersService
@@ -37,7 +41,10 @@ export class CreateOfferComponent implements OnInit {
       offerLocation: new FormControl('', Validators.compose([
         Validators.required,
         Validators.minLength(6)
-     ]))
+     ])),
+     offerFile: new FormControl('', Validators.compose([
+      Validators.required
+   ]))
    });
    this.getPlaceAutocomplete();
   }
@@ -59,12 +66,16 @@ export class CreateOfferComponent implements OnInit {
   createOffer(data){
     this.offer.title = data.offerTitle;
     this.offer.coordinates = this.coordinates
-    console.log(this.offer);
-    this.offerService.createOffer(this.offer).subscribe((data) => {
-      alert("Dirección agregada");
-    },error=>{
-      console.log(error);
-    })
+    if(this.fileUpload[0].type == 'image/jpg' || this.fileUpload[0].type == 'image/jpg' || this.fileUpload[0].type == 'image/png'){
+      this.showErrorUploadFile = false;
+      this.offerService.createOffer(this.offer).subscribe((data) => {
+        alert("Dirección agregada");
+      },error=>{
+        console.log(error);
+      })
+    }else{
+      this.showErrorUploadFile = true;
+    }
   }
 
   getLatitudeLongitude(place:any){
@@ -100,4 +111,8 @@ export class CreateOfferComponent implements OnInit {
     console.log('url -> ', place.url);
   }
 
+  uploadFile(file: File) {
+    this.fileUpload = file;
+    this.fileName = this.fileUpload[0].name;
+  }
 }

@@ -3,12 +3,20 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../_services/authentication.service';
 import { environment } from 'src/environments/environment';
+import { LoadingService } from "../_services/loading.service";
+import { finalize } from "rxjs/operators";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-    constructor(private authenticationService: AuthenticationService) { }
+
+    activeRequests: number = 0;
+
+    constructor(private authenticationService: AuthenticationService,
+                private loadingService: LoadingService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        //loading
+        let displayLoadingScreen = true;
         // add auth header with jwt if user is logged in and request is to api url
         const currentUser = this.authenticationService.currentUserValue;
         const isLoggedIn = currentUser && currentUser.access_token;
@@ -22,6 +30,22 @@ export class JwtInterceptor implements HttpInterceptor {
             });
         }
 
-        return next.handle(request);
+        if (displayLoadingScreen) {
+            if (this.activeRequests === 0) {
+              this.loadingService.startLoading();
+            }
+            this.activeRequests++;
+      
+            return next.handle(request).pipe(
+              finalize(() => {
+                this.activeRequests--;
+                if (this.activeRequests === 0) {
+                  this.loadingService.stopLoading();
+                }
+              })
+            )
+          } else {
+            return next.handle(request);
+          }
     }
 }

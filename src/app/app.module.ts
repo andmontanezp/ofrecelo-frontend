@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BaseLayoutComponent } from './_components/base-layout/base-layout.component';
 import { OfferListMobileComponent } from './_components/offer-list-mobile/offer-list-mobile.component';
 import { MapMobileComponent } from './_components/map-mobile/map-mobile.component';
+import { LoadingComponent } from './_components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MapMobileComponent } from './_components/map-mobile/map-mobile.componen
     OfferCardComponent,
     BaseLayoutComponent,
     OfferListMobileComponent,
-    MapMobileComponent
+    MapMobileComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

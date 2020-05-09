@@ -21,7 +21,7 @@ export class CreateOfferComponent implements OnInit {
 
   formdata;
   coordinates: Coordinates = {latitude: 0, longitude: 0};
-  offer: Offer = {title: '', coordinates: this.coordinates};
+  offer: Offer = {title: '', coordinates: this.coordinates, offerFile: undefined};
   address: Address = {countryName: '', regionName: '', cityName: '', streetName: '', streetNumber: 0}
   fileUpload: File;
   fileName: string = 'Seleccione un archivo';
@@ -66,9 +66,9 @@ export class CreateOfferComponent implements OnInit {
   createOffer(data){
     this.offer.title = data.offerTitle;
     this.offer.coordinates = this.coordinates
-    if(this.fileUpload[0].type == 'image/jpg' || this.fileUpload[0].type == 'image/jpg' || this.fileUpload[0].type == 'image/png'){
+    if(this.fileUpload[0].type == 'image/jpeg' || this.fileUpload[0].type == 'image/jpg' || this.fileUpload[0].type == 'image/png'){
       this.showErrorUploadFile = false;
-      this.offerService.createOffer(this.offer).subscribe((data) => {
+      this.offerService.createOffer(this.offer, this.fileUpload[0]).subscribe((data) => {
         alert("Dirección agregada");
       },error=>{
         console.log(error);

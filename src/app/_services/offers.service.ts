@@ -5,13 +5,6 @@ import { Offer } from '../model/offer';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': "application/json",
-    'Authorization': ""
-  })
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -22,8 +15,12 @@ export class OffersService {
     return this._http.get<Array<Offer>>(`${environment.apiUrl}/offer`);
   }
 
-  createOffer(offer: Offer): Observable<Offer>{
-    httpOptions.headers = httpOptions.headers.set('Authorization', 'bearer ' + JSON.parse(localStorage.getItem('currentUser')).access_token);
-    return this._http.post<Offer>(`${environment.apiUrl}/offer`, offer, httpOptions)
+  createOffer(offer: Offer, offerFile: File): Observable<Offer>{
+    const formData = new FormData();
+    formData.append('offerTitle', offer.title);
+    formData.append('offerLatitude', offer.coordinates.latitude.toString());
+    formData.append('offerLongitude', offer.coordinates.longitude.toString());
+    formData.append('offerFile', offerFile);
+    return this._http.post<Offer>(`${environment.apiUrl}/offer`, formData)
   }
 }

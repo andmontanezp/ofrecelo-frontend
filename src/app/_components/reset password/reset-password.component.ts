@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
-import { RegisterService } from 'src/app/_services/register.service';
+import { PasswordService } from 'src/app/_services/password.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
   error: ErrorEvent;
   constructor(
-    private registerService : RegisterService,
+    private password : PasswordService,
     private router: Router
   ) { }
 
@@ -25,13 +25,6 @@ export class RegisterComponent implements OnInit {
   confirmpasswordValid=true;
   loading = false;
 
-  validatePassword(form:any){
-      if(form.controls['password'].value === form.controls['confirmpassword'].value){
-        this.confirmpasswordValid=true;
-      }else{
-        this.confirmpasswordValid=false; 
-      }
-  }
   home() {
     this.router.navigate(['/']);
   }
@@ -39,13 +32,10 @@ export class RegisterComponent implements OnInit {
   onSubmit(form: any) { 
     this.loading = true;
     this.showError = false;
-    console.log("user : "+this.user.name);
-    this.user.name = form.controls['name'].value;
-    this.user.lastName = form.controls['lastName'].value;
-    this.user.email = form.controls['email'].value;
-    this.user.password = form.controls['password'].value;
 
-    this.registerService.register(this.user).subscribe(
+    this.user.email = form.controls['email'].value;
+
+    this.password.resetPassword(this.user).subscribe(
       users => {
       console.log(users);
       this.submitted = true; 

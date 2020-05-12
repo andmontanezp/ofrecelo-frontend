@@ -1,0 +1,17 @@
+version: "2.3"
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - 4200:4200
+    volumes:
+      - ./:/usr/src/app 
+    command: sh -c "npm install && ng serve --host 0.0.0.0 --port 4200"
+    depends_on: 
+      - backend
+
+  backend:
+    image: ofrecelo-backend_backend:latest
+    ports:
+      - 8080:8080

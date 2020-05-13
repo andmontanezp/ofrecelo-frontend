@@ -16,4 +16,8 @@ export class OfferCardListComponent implements OnInit {
     console.log(this.offers);
   }
 
+  mouseEnter(div : string){
+    console.log("mouse enter : " + div);
+  }
+
 }

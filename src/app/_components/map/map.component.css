@@ -7,11 +7,38 @@
 #map-site {
     position: fixed;
     top: 0;
-    height: 400px;
+    height: 100%;
     width: 100%;
 }
 
 .map-mobile{
     width:100%;
     height: 400px;
+}
+
+.columnas {
+    float: left;
+    width: 50%;
+  }
+  
+.filas:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.left {
+    width: 40%;
+}
+  
+.right {
+    width: 60%;
+}
+
+.card-block {
+    min-height: 300px;
+}
+
+.container-fluid {
+    overflow-x: scroll !important;
 }

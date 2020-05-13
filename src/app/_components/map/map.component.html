@@ -1,17 +1,55 @@
-<mat-grid-list cols="4" rowHeight="600px" class="d-none d-md-block d-lg-none d-lg-none d-lg-block d-xl-none d-xl-block">
-    <mat-grid-tile [colspan]="2" [rowspan]="2" id="offer-card-list">
-        <offer-card-list></offer-card-list>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="2" id="map-site">
-        <div #map style="width:100%;height:100%"></div>
-    </mat-grid-tile>
-</mat-grid-list>
+<div>
+    <div class="columnas left d-none d-md-block d-lg-none d-lg-none d-lg-block d-xl-none d-xl-block filas">
+        <div *ngFor="let offer of offers">
+            <div class="card mb-3" style="max-width: 540px;" (mouseenter)="mouseEnter(offer)"
+                (mouseleave)="mouseLeave(offer)">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="card-img"
+                            alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{offer.title}}</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columnas right">
+        <div id="map-site" class="columnas map-mobile">
+            <div #map style="width:100%;height:100%"></div>
+        </div>
+    </div>
+</div>
 
 <div class="d-block d-sm-none d-sm-block d-md-none">
     <div class="map-mobile">
-        <map-mobile></map-mobile>
+        <!--div #mapMobile style="width:100%;height:100%"></div-->
     </div>
     <div>
-        <offer-list-mobile></offer-list-mobile>
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+                <div *ngFor="let offer of offers">
+                    <div class="card card-block" (click)="showMarker(offer)">
+                        <img class="card-img-top" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{offer.title}}</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+                        </div>
+                        <div class="card-body">
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

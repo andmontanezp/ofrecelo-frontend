@@ -21,7 +21,7 @@ export class CreateOfferComponent implements OnInit {
 
   formdata;
   coordinates: Coordinates = {latitude: 0, longitude: 0};
-  offer: Offer = {title: '', coordinates: this.coordinates, offerFile: undefined};
+  offer: Offer = {id: '', title: '', coordinates: this.coordinates, offerFile: undefined};
   address: Address = {countryName: '', regionName: '', cityName: '', streetName: '', streetNumber: 0}
   fileUpload: File;
   fileName: string = 'Seleccione un archivo';

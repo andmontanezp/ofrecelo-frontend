@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of, Subject } from 'rxjs';
 import { Offer } from '../model/offer';
 import { environment } from 'src/environments/environment';
-import { HttpHeaders } from '@angular/common/http';
+import { OfferDTO } from '../model/offerDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ import { HttpHeaders } from '@angular/common/http';
 export class OffersService {
   constructor(private _http: HttpClient) { }
 
-  getOffers(): Observable<Array<Offer>> {
-    return this._http.get<Array<Offer>>(`${environment.apiUrl}/offer`);
+  getOffers(): Observable<Array<OfferDTO>> {
+    return this._http.get<Array<OfferDTO>>(`${environment.apiUrl}/offer`);
   }
 
   createOffer(offer: Offer, offerFile: File): Observable<Offer>{

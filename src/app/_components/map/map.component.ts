@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { OffersService } from 'src/app/_services/offers.service';
 import { Offer } from 'src/app/model/offer';
 import { Subject, of } from 'rxjs';
+import { OfferDTO } from 'src/app/model/offerDTO';
 
 @Component({
   selector: 'app-map',
@@ -10,7 +11,7 @@ import { Subject, of } from 'rxjs';
 })
 export class MapComponent implements OnInit {
 
-  offers: Array<Offer>;
+  offers: Array<OfferDTO>;
   latLng = new Subject<google.maps.LatLng>();
   markers = [];
   markerMobile = [];

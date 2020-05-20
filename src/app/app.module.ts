@@ -21,6 +21,7 @@ import { BaseLayoutComponent } from './_components/base-layout/base-layout.compo
 import { OfferListMobileComponent } from './_components/offer-list-mobile/offer-list-mobile.component';
 import { MapMobileComponent } from './_components/map-mobile/map-mobile.component';
 import { LoadingComponent } from './_components/loading/loading.component';
+import { NavbarComponent } from './_components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LoadingComponent } from './_components/loading/loading.component';
     BaseLayoutComponent,
     OfferListMobileComponent,
     MapMobileComponent,
-    LoadingComponent
+    LoadingComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,74 +1,124 @@
-<div>
-    <div class="columnas left d-none d-md-block d-lg-none d-lg-none d-lg-block d-xl-none d-xl-block filas">
-        <div *ngFor="let offer of offers">
-            <div class="card mb-3" style="max-width: 540px;" (mouseenter)="mouseEnter(offer)"
-                (mouseleave)="mouseLeave(offer)">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="{{'data:image/jpg;base64,' + offer.file}}" class="card-img"
-                        alt="..."/>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{offer.title}}</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <p class="card-text"><small class="text-muted">Danos tu opinión!! </small></p>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <i class="fas fa-thumbs-up"></i>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <i class="fas fa-thumbs-down"></i>
+<app-navbar></app-navbar>
+<div class="col-md-12 d-none d-md-block d-lg-none d-lg-none d-lg-block d-xl-none d-xl-block">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="regions">Regiones</label>
+                <select class="form-control" id="regions" (change)="searchCommune($event.target.value)">
+                    <option>Seleccione una región</option>
+                    <option>Región Metropolitana</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="communes">Comunas</label>
+                <select class="form-control" id="communes" (change)="getMapDesktop($event.target.value)">
+                    <option [value]="0">Seleccione una comuna</option>
+                    <option *ngFor="let commune of communes" [value]="commune.name">
+                        {{commune.name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="showMap">
+        <div class="columnas left d-none d-md-block d-lg-none d-lg-none d-lg-block d-xl-none d-xl-block filas">
+            <div *ngFor="let offer of offers">
+                <div class="card mb-3" style="max-width: 540px;" (mouseenter)="mouseEnter(offer)"
+                    (mouseleave)="mouseLeave(offer)">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="{{'data:image/jpg;base64,' + offer.file}}" class="card-img"
+                            alt="..."/>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{offer.title}}</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <!--div class="row">
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <p class="card-text"><small class="text-muted">Danos tu opinión!! </small></p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <i class="fas fa-thumbs-up"></i>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <i class="fas fa-thumbs-down"></i>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="row">
-                                        <div class="col-md-8 clear">
-                                            <input type="text" placeholder="Comentario" />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <button type="button" class="btn btn-primary">Votar</button>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <input type="text" placeholder="Comentario" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-primary">Votar</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div-->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="columnas right">
-        <div id="map-site" class="columnas map-mobile">
-            <div #map style="width:100%;height:100%"></div>
+        <div class="columnas right">
+            <div id="map-site" class="columnas map-mobile">
+                <div #map style="width:100%;height:100%"></div>
+            </div>
         </div>
     </div>
 </div>
-
-<div class="d-block d-sm-none d-sm-block d-md-none">
-    <div class="map-mobile">
-        <!--div #mapMobile style="width:100%;height:100%"></div-->
+<div class="col-md-12 d-block d-sm-none d-sm-block d-md-none">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="regions">Regiones</label>
+                <select class="form-control" id="regions" (change)="searchCommune($event.target.value)">
+                    <option>Seleccione una región</option>
+                    <option>Región Metropolitana</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="communes">Comunas</label>
+                <select class="form-control" id="communes" (change)="getMapMobile($event.target.value)">
+                    <option [value]="0">Seleccione una comuna</option>
+                    <option *ngFor="let commune of communes" [value]="commune.name">
+                        {{commune.name}}
+                    </option>
+                </select>
+            </div>
+        </div>
     </div>
-    <div>
-        <div class="container-fluid">
-            <div class="row flex-nowrap">
-                <div *ngFor="let offer of offers">
-                    <div class="card card-block" (click)="showMarker(offer)">
-                        <img class="card-img-top" src="{{'data:image/jpg;base64,' + offer.file}}" alt="Card image cap" />
-                        <div class="card-body">
-                            <h5 class="card-title">{{offer.title}}</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                        </div>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
+    <div class="row" *ngIf="showMapMobile">
+        <div class="d-block d-sm-none d-sm-block d-md-none">
+            <div class="map-mobile">
+                <div #mapMobile style="width:100%;height:100%"></div>
+            </div>
+            <div>
+                <div class="container-fluid">
+                    <div class="row flex-nowrap">
+                        <div *ngFor="let offer of offers">
+                            <div class="card card-block" (click)="showMarker(offer)">
+                                <img class="card-img-top" src="{{'data:image/jpg;base64,' + offer.file}}" alt="Card image cap" />
+                                <div class="card-body">
+                                    <h5 class="card-title">{{offer.title}}</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                        of the card's content.</p>
+                                </div>
+                                <div class="card-body">
+                                    <a href="#" class="card-link">Card link</a>
+                                    <a href="#" class="card-link">Another link</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

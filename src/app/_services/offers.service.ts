@@ -4,6 +4,7 @@ import { Observable, of, Subject } from 'rxjs';
 import { Offer } from '../model/offer';
 import { environment } from 'src/environments/environment';
 import { OfferDTO } from '../model/offerDTO';
+import { OfferRequest } from '../model/offerRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +12,18 @@ import { OfferDTO } from '../model/offerDTO';
 export class OffersService {
   constructor(private _http: HttpClient) { }
 
-  getOffers(): Observable<Array<OfferDTO>> {
-    return this._http.get<Array<OfferDTO>>(`${environment.apiUrl}/offer`);
+  getOffers(district: string): Observable<Array<OfferDTO>> {
+    return this._http.get<Array<OfferDTO>>(`${environment.apiUrl}/offer?district=`+district);
   }
 
-  createOffer(offer: Offer, offerFile: File): Observable<Offer>{
+  createOffer(offer: OfferRequest): Observable<Offer>{
+    /*
     const formData = new FormData();
     formData.append('offerTitle', offer.title);
     formData.append('offerLatitude', offer.coordinates.latitude.toString());
     formData.append('offerLongitude', offer.coordinates.longitude.toString());
     formData.append('offerFile', offerFile);
-    return this._http.post<Offer>(`${environment.apiUrl}/offer`, formData)
+    */
+    return this._http.post<Offer>(`${environment.apiUrl}/offer`, offer)
   }
 }

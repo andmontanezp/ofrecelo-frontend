@@ -30,7 +30,7 @@ export class MapMobileComponent implements OnInit {
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
-      this._service.getOffers().subscribe(offers => {
+      this._service.getOffers('antofagasta').subscribe(offers => {
         sessionStorage.setItem('offers', JSON.stringify(offers));
         offers.map(offer => {
           let myLatLng = new google.maps.LatLng(offer.coordinates.latitude, offer.coordinates.longitude);

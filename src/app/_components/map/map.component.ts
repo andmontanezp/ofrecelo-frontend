@@ -16,6 +16,9 @@ export class MapComponent implements OnInit {
   markers = [];
   markerMobile = [];
   offersMobile: Array<Offer>;
+  communes: Array<any>;
+  showMapMobile: boolean = false;
+  showMap: boolean = false;
 
   @ViewChild('map') mapElement: any;
   map: google.maps.Map;
@@ -26,18 +29,24 @@ export class MapComponent implements OnInit {
   constructor(private _service: OffersService) { }
 
   ngOnInit() {
+  }
 
+  getMapDesktop(value){
+    this.showMap = true;
+    this.showGoogleMap(value);
+  }
+
+  showGoogleMap(value){
     this.getCurrentLocation();
-
     this.latLng.subscribe(result => {
       const mapProperties = {
-        //center: result,
-        center: new google.maps.LatLng(-33.451487, -70.663676),
+        center: result,
+        //center: new google.maps.LatLng(-33.451487, -70.663676),
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
-      this._service.getOffers().subscribe(offers => {
+      this._service.getOffers(value.toLowerCase()).subscribe(offers => {
         this.offers = offers;
         offers.map(offer => {
           let myLatLng = new google.maps.LatLng(offer.coordinates.latitude, offer.coordinates.longitude);
@@ -114,6 +123,56 @@ export class MapComponent implements OnInit {
       this.markers[element.id.toString()].setIcon(this.normalIcon());
     });
     this.markers[offer.id].setIcon(this.highlightedIcon());
+  }
+
+  searchCommune(value){
+    this.getCommunes();
+  }
+
+  getCommunes(){
+    this.communes = [
+      { "id": 1, "name": "Cerrillos" },
+      { "id": 2, "name": "Cerro Navia" },
+      { "id": 3, "name": "Conchalí" },
+      { "id": 4, "name": "El Bosque" },
+      { "id": 5, "name": "Estación Central" },
+      { "id": 6, "name": "Huechuraba" },
+      { "id": 7, "name": "Independencia" },
+      { "id": 8, "name": "La Cisterna" },
+      { "id": 9, "name": "La Florida" },
+      { "id": 10, "name": "La Granja" },
+      { "id": 11, "name": "La Pintana" },
+      { "id": 12, "name": "La Reina" },
+      { "id": 13, "name": "Las Condes" },
+      { "id": 14, "name": "Lo Barnechea" },
+      { "id": 15, "name": "Lo Espejo" },
+      { "id": 16, "name": "Lo Prado" },
+      { "id": 17, "name": "Macul" },
+      { "id": 18, "name": "Maipú" },
+      { "id": 19, "name": "Ñuñoa" },
+      { "id": 20, "name": "Padre Hurtado" },
+      { "id": 21, "name": "Pedro Aguirre Cerda" },
+      { "id": 22, "name": "Peñaflor" },
+      { "id": 23, "name": "Peñalolén" },
+      { "id": 24, "name": "Providencia" },
+      { "id": 25, "name": "Pudahuel" },
+      { "id": 26, "name": "Puente Alto" },
+      { "id": 27, "name": "Quilicura" },
+      { "id": 28, "name": "Quinta Normal" },
+      { "id": 29, "name": "Recoleta" },
+      { "id": 30, "name": "Renca" },
+      { "id": 31, "name": "San Bernardo" },
+      { "id": 32, "name": "San Joaquín" },
+      { "id": 33, "name": "San Miguel" },
+      { "id": 34, "name": "San Ramón" },
+      { "id": 35, "name": "Santiago" },
+      { "id": 36, "name": "Vitacura" }
+    ]
+  }
+
+  getMapMobile(commune){
+    this.showMapMobile = true;
+    this.showGoogleMap(commune);
   }
 
 }

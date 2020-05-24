@@ -13,7 +13,7 @@ export class OffersService {
   constructor(private _http: HttpClient) { }
 
   getOffers(district: string): Observable<Array<OfferDTO>> {
-    return this._http.get<Array<OfferDTO>>(`${environment.apiUrl}/offer?district=`+district);
+    return this._http.get<Array<OfferDTO>>(`${environment.apiUrl}/offer/location/`+district);
   }
 
   createOffer(offer: OfferRequest): Observable<Offer>{

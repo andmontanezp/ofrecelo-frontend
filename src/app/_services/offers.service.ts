@@ -16,6 +16,14 @@ export class OffersService {
     return this._http.get<Array<OfferDTO>>(`${environment.apiUrl}/offer/location/`+district);
   }
 
+  getOffersBUser(): Observable<Array<OfferDTO>> {
+    return this._http.get<Array<OfferDTO>>(`${environment.apiUrl}/offer/user`);
+  }
+
+  deleteOffer(offerId: String){
+    return this._http.delete<OfferDTO>(`${environment.apiUrl}/offer/`+offerId);
+  }
+
   createOffer(offer: OfferRequest): Observable<Offer>{
     /*
     const formData = new FormData();

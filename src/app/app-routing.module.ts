@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './_components/login/login.component';
 import { RegisterComponent } from './_components/register/register.component';
 import { ResetPasswordComponent } from './_components/reset password/reset-password.component';
+import { EditOfferCardListComponent } from './_components/edit-offers/edit-offer-card-list.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { CreateOfferComponent } from './_components/create-offer/create-offer.component';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'restpassword', component: ResetPasswordComponent },
+  { path: 'editOffers', component: EditOfferCardListComponent },
   { 
     path: '', 
     component: BaseLayoutComponent, 

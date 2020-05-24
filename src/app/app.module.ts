@@ -10,6 +10,7 @@ import { LoginComponent } from './_components/login/login.component';
 import { MapComponent } from './_components/map/map.component';
 import { RegisterComponent } from './_components/register/register.component';
 import { ResetPasswordComponent } from './_components/reset password/reset-password.component';
+import { EditOfferCardListComponent} from './_components/edit-offers/edit-offer-card-list.component';
 import { AlertComponent } from './_components/alert/alert.component';
 import { CreateOfferComponent } from './_components/create-offer/create-offer.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
@@ -30,6 +31,7 @@ import { NavbarComponent } from './_components/navbar/navbar.component';
     MapComponent,
     RegisterComponent,
     ResetPasswordComponent,
+    EditOfferCardListComponent,
     AlertComponent,
     CreateOfferComponent,
     OfferCardListComponent,

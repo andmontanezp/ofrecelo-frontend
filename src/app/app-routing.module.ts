@@ -10,12 +10,15 @@ import { AuthGuard } from './_guards/auth.guard';
 import { CreateOfferComponent } from './_components/create-offer/create-offer.component';
 import { AppComponent } from './app.component';
 import { BaseLayoutComponent } from './_components/base-layout/base-layout.component';
+import { AboutUsComponent } from './_components/about-us/about-us.component';
+import { from } from 'rxjs';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'restpassword', component: ResetPasswordComponent },
   { path: 'editOffers', component: EditOfferCardListComponent },
+  { path: 'aboutUs', component: AboutUsComponent},
   { 
     path: '', 
     component: BaseLayoutComponent, 

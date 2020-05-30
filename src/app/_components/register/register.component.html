@@ -1,29 +1,40 @@
 <div class="container">
   <div class="container">
     <div [hidden]="submitted">
-      <h1>Sign in</h1>
+      <h1>Registro</h1>
       <form #registerForm="ngForm">
         <div class="form-group">
-          <label for="name">Name</label>
+          <label for="name">Nombre</label>
           <input type="text" class="form-control" id="name"
                  required
                  [(ngModel)]="registerForm.name" name="name" required
                  #name="ngModel">
           <div [hidden]="name.valid || name.pristine"
                class="alert alert-danger">
-            Name is required
+            Nombre requerido
           </div>
         </div>
   
         <div class="form-group">
-          <label for="lastName">Last Name</label>
+          <label for="lastName">Apellido</label>
           <input type="text" class="form-control" id="lastName" required
                  [(ngModel)]="registerForm.lastName" name="lastName" #lastName="ngModel">
         </div>
 
         <div [hidden]="lastName.valid || lastName.pristine"
         class="alert alert-danger">
-          LastName is required
+          El apellido es obligatorio
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Tel&eacute;fono de contacto</label>
+          <input type="text" class="form-control" id="phone" required
+                 [(ngModel)]="registerForm.phone" name="phone" #phone="ngModel">
+        </div>
+
+        <div [hidden]="phone.valid || phone.pristine"
+        class="alert alert-danger">
+         El Tel&eacute;fono es obligatorio
         </div>
 
         <div class="form-group">
@@ -33,11 +44,11 @@
         </div>
         <div [hidden]="email.valid || email.pristine"
                class="alert alert-danger">
-            Name is required
+            El Email es obligatorio
           </div>
         
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">Contraseña</label>
           <input type="password" class="form-control" id="password" required
                  [(ngModel)]="registerForm.password" name="password" #password="ngModel"  value="Encrypt" 
                  (ngModelChange)="validatePassword(registerForm)">
@@ -45,11 +56,11 @@
 
         <div [hidden]="password.valid || password.pristine"
         class="alert alert-danger">
-            Password is required
+            La cosntraseña es obligatorio
         </div>
 
         <div class="form-group">
-          <label for="confirmpassword">Confirm password</label>
+          <label for="confirmpassword">Confirmar contraseña</label>
           <input type="password" class="form-control" id="confirmpassword"
                  [(ngModel)]="registerForm.confirmpassword" name="confirmpassword" #confirmpassword="ngModel" required 
                  (ngModelChange)="validatePassword(registerForm)" value="Encrypt"> 
@@ -57,12 +68,12 @@
         
         <div [hidden]="confirmpassword.valid || confirmpassword.pristine"
         class="alert alert-danger">
-            Password is required
+           La confirmación de la contraseña es obligatorio
         </div>
 
         <div [hidden]="registerForm.confirmpassword == registerForm.password || !confirmpassword.valid"
         class="alert alert-danger">
-            Password is not match
+            Las contraseñas no son iguales
         </div>
   
         <button type="submit" class="btn btn-success" [disabled]="!registerForm.form.valid || !confirmpasswordValid || loading"  (click)="onSubmit(registerForm)">Submit</button>
@@ -76,7 +87,7 @@
     </div>
 
     <div [hidden]="showError || !submitted">
-      <h2>Bienvenido {{ showUser().name }}, tus registro fue exitoso</h2>
+      <h2>Bienvenido {{ showUser().name }}, tu registro fue exitoso</h2>
       <br>
       <button class="btn btn-primary" (click)="home()">Home</button>
     </div>

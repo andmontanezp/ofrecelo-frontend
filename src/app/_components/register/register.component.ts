@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
     console.log("user : "+this.user.name);
     this.user.name = form.controls['name'].value;
     this.user.lastName = form.controls['lastName'].value;
+    this.user.phone = form.controls['phone'].value;
     this.user.email = form.controls['email'].value;
     this.user.password = form.controls['password'].value;
 

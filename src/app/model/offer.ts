@@ -6,4 +6,5 @@ export class Offer {
     public coordinates: Coordinates;
     public offerFile: File;
     public description: string; 
+    public offerType: string;
 }

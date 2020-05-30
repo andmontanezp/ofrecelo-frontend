@@ -23,14 +23,14 @@ export class CreateOfferComponent implements OnInit {
 
   formdata;
   coordinates: Coordinates = {latitude: 0, longitude: 0};
-  offer: Offer = {id: '', title: '', coordinates: this.coordinates, offerFile: undefined, description: undefined};
+  offer: Offer = {id: '', title: '', coordinates: this.coordinates, offerFile: undefined, description: undefined, offerType: undefined};
   address: Address = {countryName: '', regionName: '', cityName: '', streetName: '', streetNumber: 0}
 
   fileUpload: File;
   fileName: string = 'Seleccione un archivo';
   showErrorUploadFile: boolean = false;
   offerRequest: OfferRequest = {id: '', offerTitle: '', offerLatitude: 0, offerLongitude: 0, district: '',
-  file:'', fileExtension: '', fileName: '', description: undefined};
+  file:'', fileExtension: '', fileName: '', description: undefined, offerType: undefined};
   fileEncoded: string = '';
 
   constructor(
@@ -55,7 +55,10 @@ export class CreateOfferComponent implements OnInit {
    ])),
      offerFile: new FormControl('', Validators.compose([
       Validators.required
-   ]))
+   ])),
+   offerType: new FormControl('', Validators.compose([
+    Validators.required
+ ]))
    });
    this.getPlaceAutocomplete();
   }
@@ -77,7 +80,7 @@ export class CreateOfferComponent implements OnInit {
   createOffer(data){
     this.offerRequest.offerTitle = data.offerTitle;
     this.offerRequest.description = data.description;
-    console.log("**** description " + data.description)
+    this.offerRequest.offerType = data.offerType;
     this.offerRequest.offerLatitude = this.coordinates.latitude;
     this.offerRequest.offerLongitude = this.coordinates.longitude;
     this.offerRequest.district = this.address.cityName;

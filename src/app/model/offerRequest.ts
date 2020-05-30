@@ -8,4 +8,5 @@ export class OfferRequest {
     public fileExtension: string;
     public fileName: string;
     public description: string; 
+    public offerType: string;
 }

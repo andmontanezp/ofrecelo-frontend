@@ -6,4 +6,5 @@ export class OfferDTO {
     public coordinates: Coordinates;
     public offerFile: File;
     public file: string;
+    public description: string; 
 }

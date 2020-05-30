@@ -7,4 +7,5 @@ export class OfferRequest {
     public file: string;
     public fileExtension: string;
     public fileName: string;
+    public description: string; 
 }

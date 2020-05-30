@@ -1,6 +1,6 @@
 <div class="col-md-6 offset-md-3 mt-5">
    <div *ngIf="error" class="alert alert-info">
-      <div class="alert alert-danger mt-3 mb-0">{{error}}</div>
+      <div class="alert alert-danger mt-3 mb-0">Email o Contraseña incorecta, por favor intente nuevamente</div>
   </div>
   <div class="card">
       <h4 class="card-header">Inicio de sesi&oacute;n</h4>
@@ -24,7 +24,9 @@
                   <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                   Iniciar sesi&oacute;n
               </button>
+            <br>
               <a class="nav-link" [routerLink]="'/restpassword'">Olvidaste tu contraseña?</a>
+
           </form>
       </div>
   </div>

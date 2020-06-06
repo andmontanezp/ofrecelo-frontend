@@ -33,21 +33,22 @@ export class MapComponent implements OnInit {
 
   getMapDesktop(value){
     this.showMap = true;
-    this.showGoogleMap(value);
+    this.showGoogleMap(this.communes[value]);
   }
 
   showGoogleMap(value){
     this.getCurrentLocation();
     this.latLng.subscribe(result => {
       const mapProperties = {
-        center: result,
-        //center: new google.maps.LatLng(-33.451487, -70.663676),
-        zoom: 15,
+        //center: result,
+        center: new google.maps.LatLng(value.coordinates.latitude, value.coordinates.longitude),
+        zoom: 14,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
-      this._service.getOffers(value.toLowerCase()).subscribe(offers => {
+      this._service.getOffers(value.name.toLowerCase()).subscribe(offers => {
         this.offers = offers;
+        console.log(this.offers);
         offers.map(offer => {
           let myLatLng = new google.maps.LatLng(offer.coordinates.latitude, offer.coordinates.longitude);
           let marker = new google.maps.Marker({
@@ -131,42 +132,150 @@ export class MapComponent implements OnInit {
 
   getCommunes(){
     this.communes = [
-      { "id": 1, "name": "Cerrillos" },
-      { "id": 2, "name": "Cerro Navia" },
-      { "id": 3, "name": "Conchalí" },
-      { "id": 4, "name": "El Bosque" },
-      { "id": 5, "name": "Estación Central" },
-      { "id": 6, "name": "Huechuraba" },
-      { "id": 7, "name": "Independencia" },
-      { "id": 8, "name": "La Cisterna" },
-      { "id": 9, "name": "La Florida" },
-      { "id": 10, "name": "La Granja" },
-      { "id": 11, "name": "La Pintana" },
-      { "id": 12, "name": "La Reina" },
-      { "id": 13, "name": "Las Condes" },
-      { "id": 14, "name": "Lo Barnechea" },
-      { "id": 15, "name": "Lo Espejo" },
-      { "id": 16, "name": "Lo Prado" },
-      { "id": 17, "name": "Macul" },
-      { "id": 18, "name": "Maipú" },
-      { "id": 19, "name": "Ñuñoa" },
-      { "id": 20, "name": "Padre Hurtado" },
-      { "id": 21, "name": "Pedro Aguirre Cerda" },
-      { "id": 22, "name": "Peñaflor" },
-      { "id": 23, "name": "Peñalolén" },
-      { "id": 24, "name": "Providencia" },
-      { "id": 25, "name": "Pudahuel" },
-      { "id": 26, "name": "Puente Alto" },
-      { "id": 27, "name": "Quilicura" },
-      { "id": 28, "name": "Quinta Normal" },
-      { "id": 29, "name": "Recoleta" },
-      { "id": 30, "name": "Renca" },
-      { "id": 31, "name": "San Bernardo" },
-      { "id": 32, "name": "San Joaquín" },
-      { "id": 33, "name": "San Miguel" },
-      { "id": 34, "name": "San Ramón" },
-      { "id": 35, "name": "Santiago" },
-      { "id": 36, "name": "Vitacura" }
+      { "id": 0, "name": "Cerrillos", "coordinates":{
+        "latitude": -33.50101070000001,
+        "longitude": -70.7098735
+      } },
+      { "id": 1, "name": "Cerro Navia", "coordinates":{
+        "latitude": -33.4218958,
+        "longitude": -70.7404531
+      } },
+      { "id": 2, "name": "Conchalí", "coordinates":{
+        "latitude": -33.3846893,
+        "longitude": -70.68002129999999
+      } },
+      { "id": 3, "name": "El Bosque", "coordinates":{
+        "latitude": -33.5589761,
+        "longitude": -70.67875029999999
+      } },
+      { "id": 4, "name": "Estación Central", "coordinates":{
+        "latitude": -33.46191779999999,
+        "longitude": -70.69850989999999
+      } },
+      { "id": 5, "name": "Huechuraba", "coordinates":{
+        "latitude": -33.3742128,
+        "longitude": -70.6367425
+      } },
+      { "id": 6, "name": "Independencia", "coordinates":{
+        "latitude": -33.4155974,
+        "longitude": -70.6642603
+      } },
+      { "id": 7, "name": "La Cisterna", "coordinates":{
+        "latitude": -33.5264495,
+        "longitude": -70.66135109999999
+      } },
+      { "id": 8, "name": "La Florida", "coordinates":{
+        "latitude": -33.5226882,
+        "longitude": -70.5987142
+      } },
+      { "id": 9, "name": "La Granja", "coordinates":{
+        "latitude": -33.53779310000001,
+        "longitude": -70.62067800000001
+      } },
+      { "id": 10, "name": "La Pintana", "coordinates":{
+        "latitude": -33.5855661,
+        "longitude": -70.6285838
+      } },
+      { "id": 11, "name": "La Reina", "coordinates":{
+        "latitude": -33.4411269,
+        "longitude": -70.5340591
+      } },
+      { "id": 12, "name": "Las Condes", "coordinates":{
+        "latitude": -33.4125944,
+        "longitude": -70.5689716
+      } },
+      { "id": 13, "name": "Lo Barnechea", "coordinates":{
+        "latitude": -33.352669,
+        "longitude": -70.518517
+      } },
+      { "id": 14, "name": "Lo Espejo", "coordinates":{
+        "latitude": -33.5220498,
+        "longitude": -70.690565
+      } },
+      { "id": 15, "name": "Lo Prado", "coordinates":{
+        "latitude": -33.4442688,
+        "longitude": -70.7233493
+      } },
+      { "id": 16, "name": "Macul", "coordinates":{
+        "latitude": -33.4851471,
+        "longitude": -70.7233493
+      } },
+      { "id": 17, "name": "Maipú", "coordinates":{
+        "latitude": -33.5105866,
+        "longitude": -70.7572607
+      } },
+      { "id": 18, "name": "Ñuñoa", "coordinates":{
+        "latitude": -33.4566678,
+        "longitude": -70.5978415
+      } },
+      { "id": 19, "name": "Padre Hurtado", "coordinates":{
+        "latitude": -33.5695362,
+        "longitude": -70.8156717
+      } },
+      { "id": 20, "name": "Pedro Aguirre Cerda", "coordinates":{
+        "latitude": -33.4940901,
+        "longitude": -70.67650259999999
+      } },
+      { "id": 21, "name": "Peñaflor", "coordinates":{
+        "latitude": -33.60602550000001,
+        "longitude": -70.8781837
+      } },
+      { "id": 22, "name": "Peñalolén", "coordinates":{
+        "latitude": -33.4719116,
+        "longitude": -70.5627854
+      } },
+      { "id": 23, "name": "Providencia", "coordinates":{
+        "latitude": -33.4314474,
+        "longitude": -70.6093325
+      } },
+      { "id": 24, "name": "Pudahuel", "coordinates":{
+        "latitude": -33.4421135,
+        "longitude": -70.7640644
+      } },
+      { "id": 25, "name": "Puente Alto", "coordinates":{
+        "latitude": -33.6186082,
+        "longitude": -70.5906057
+      } },
+      { "id": 26, "name": "Quilicura", "coordinates":{
+        "latitude": -33.3576747,
+        "longitude": -70.72927179999999
+      } },
+      { "id": 27, "name": "Quinta Normal", "coordinates":{
+        "latitude": -33.4317378,
+        "longitude": -70.6923917
+      } },
+      { "id": 28, "name": "Recoleta", "coordinates":{
+        "latitude": -33.4061916,
+        "longitude": -70.6336176
+      } },
+      { "id": 29, "name": "Renca", "coordinates":{
+        "latitude": -33.4063601,
+        "longitude": -70.7279965
+      } },
+      { "id": 30, "name": "San Bernardo", "coordinates":{
+        "latitude": -33.5854485,
+        "longitude": -70.69873609999999
+      } },
+      { "id": 31, "name": "San Joaquín", "coordinates":{
+        "latitude": -33.496202,
+        "longitude": -70.6283361
+      } },
+      { "id": 32, "name": "San Miguel", "coordinates":{
+        "latitude": -33.4923174,
+        "longitude": -70.6517628
+      } },
+      { "id": 33, "name": "San Ramón", "coordinates":{
+        "latitude": -33.5510207,
+        "longitude": -70.6464256
+      } },
+      { "id": 34, "name": "Santiago", "coordinates":{
+        "latitude": -33.4574739 ,
+        "longitude": -70.697282
+      } },
+      { "id": 35, "name": "Vitacura", "coordinates":{
+        "latitude": -33.3905211,
+        "longitude": -70.57241239999999
+      } }
     ]
   }
 

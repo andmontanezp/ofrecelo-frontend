@@ -100,6 +100,8 @@ export class CreateOfferComponent implements OnInit {
   }
 
   getLatitudeLongitude(place:any){
+    console.log("latitud -> " + place.geometry.location.lat());
+    console.log("longitud -> " + place.geometry.location.lng());
     this.coordinates.latitude = place.geometry.location.lat();
     this.coordinates.longitude = place.geometry.location.lng();
   }

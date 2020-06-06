@@ -15,7 +15,7 @@
                 <label for="communes">Comunas</label>
                 <select class="form-control" id="communes" (change)="getMapDesktop($event.target.value)">
                     <option [value]="0">Seleccione una comuna</option>
-                    <option *ngFor="let commune of communes" [value]="commune.name">
+                    <option *ngFor="let commune of communes" [value]="commune.id">
                         {{commune.name}}
                     </option>
                 </select>
@@ -35,8 +35,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">{{offer.title}}</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.</p>
+                                <p class="card-text">{{offer.description}}</p>
                                 <!--div class="row">
                                     <div class="col-md-8">
                                         <div class="row">
@@ -111,8 +110,7 @@
                                 <img class="card-img-top" src="{{'data:image/jpg;base64,' + offer.file}}" alt="Card image cap" />
                                 <div class="card-body">
                                     <h5 class="card-title">{{offer.title}}</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                        of the card's content.</p>
+                                    <p class="card-text">{{offer.description}}</p>
                                 </div>
                                 <div class="card-body">
                                     <a href="#" class="card-link">Card link</a>

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Offer } from 'src/app/model/offer';
 import { OffersService } from '../../_services/offers.service';
+import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbdModalContent } from './modal-content';
 
 @Component({
   selector: 'edit-offer-card-list',
@@ -9,9 +11,18 @@ import { OffersService } from '../../_services/offers.service';
 })
 export class EditOfferCardListComponent implements OnInit {
 
-  offers: Array<Offer>;
-  constructor(private offerService: OffersService) { }
+  @ViewChild(NgbdModalContent) child;
 
+  modal : any;
+  offers: Array<Offer>;
+
+  constructor(private offerService: OffersService, private modalService: NgbModal) { }
+
+  open(title: string, id:string, template: TemplateRef<any>) {
+    this.modal= this.modalService.open(template);
+    this.modal.title = title;
+    this.modal.id = id;
+  }
   ngOnInit() {
     this.offerService.getOffersBUser().subscribe((data) => {
       this.offers = data;
@@ -23,8 +34,9 @@ export class EditOfferCardListComponent implements OnInit {
   }
 
   deleteOffer(offerId: string){
-    this.offerService.deleteOffer(offerId).subscribe((data) => {
-      this.ngOnInit();
+     this.offerService.deleteOffer(offerId).subscribe((data) => {
+        this.ngOnInit();
+          this.modal.close();
       console.log(data);
     },error=>{
       console.log(error);

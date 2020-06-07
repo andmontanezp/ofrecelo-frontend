@@ -24,6 +24,8 @@ import { OfferListMobileComponent } from './_components/offer-list-mobile/offer-
 import { MapMobileComponent } from './_components/map-mobile/map-mobile.component';
 import { LoadingComponent } from './_components/loading/loading.component';
 import { NavbarComponent } from './_components/navbar/navbar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbdModalContent } from './_components/edit-offers/modal-content'
 
 @NgModule({
   declarations: [
@@ -42,8 +44,10 @@ import { NavbarComponent } from './_components/navbar/navbar.component';
     OfferListMobileComponent,
     MapMobileComponent,
     LoadingComponent,
-    NavbarComponent
+    NavbarComponent,
+    NgbdModalContent
   ],
+  entryComponents: [NgbdModalContent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -55,7 +59,8 @@ import { NavbarComponent } from './_components/navbar/navbar.component';
     MatButtonModule, 
     MatGridListModule,
     BrowserAnimationsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgbModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -3,6 +3,7 @@ export class OfferRequest {
     public offerTitle: string;
     public offerLatitude: number;
     public offerLongitude: number;
+    public location: string;
     public district: string;
     public file: string;
     public fileExtension: string;

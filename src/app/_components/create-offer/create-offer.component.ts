@@ -30,7 +30,7 @@ export class CreateOfferComponent implements OnInit {
   fileName: string = 'Seleccione un archivo';
   showErrorUploadFile: boolean = false;
   offerRequest: OfferRequest = {id: '', offerTitle: '', offerLatitude: 0, offerLongitude: 0, district: '',
-  file:'', fileExtension: '', fileName: '', description: undefined, offerType: undefined};
+  file:'', fileExtension: '', fileName: '', description: undefined, offerType: undefined, location: '' };
   fileEncoded: string = '';
 
   constructor(
@@ -81,12 +81,14 @@ export class CreateOfferComponent implements OnInit {
     this.offerRequest.offerTitle = data.offerTitle;
     this.offerRequest.description = data.description;
     this.offerRequest.offerType = data.offerType;
+    this.offerRequest.location = data.offerLocation;
     this.offerRequest.offerLatitude = this.coordinates.latitude;
     this.offerRequest.offerLongitude = this.coordinates.longitude;
     this.offerRequest.district = this.address.cityName;
     this.offerRequest.fileName = this.fileUpload[0].name;
     this.offerRequest.fileExtension = this.fileUpload[0].type;
     this.offerRequest.file = this.fileEncoded;
+    
     if(this.fileUpload[0].type == 'image/jpeg' || this.fileUpload[0].type == 'image/jpg' || this.fileUpload[0].type == 'image/png'){
       this.showErrorUploadFile = false;
       this.offerService.createOffer(this.offerRequest).subscribe((data) => {

@@ -106,13 +106,14 @@ export class MapComponent implements OnInit {
   highlightedIcon() {
     return {
       url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-      scaledSize: new google.maps.Size(60, 60),
-      anchor: new google.maps.Point(50, 50)
+      scaledSize: new google.maps.Size(40, 40),
+      anchor: new google.maps.Point(30, 30)
     };
   }
 
   mouseEnter(offer){
     this.markers[offer.id].setIcon(this.highlightedIcon());
+    return this.getInfowindowFromMarker(offer);
   }
 
   mouseLeave(offer){
